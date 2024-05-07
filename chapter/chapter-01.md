@@ -55,6 +55,51 @@ React要素 Object
     [[Prototype]] : Object
 ```
 
+### 特殊なDOM属性
+
+`createElement` の第2引数にて指定したDOM属性のうち、 `class`, `for`, `style` については注意が必要となります  
+これらはJavaScriptの予約語と被るなどの背景から、特殊な記載方法をとります  
+
+``` js
+// 誤った例
+const heading = React.createElement(
+    "h1",
+    {
+        class: "heading-class",
+        for: "me",
+        style: "background: black;"
+    },
+    "Hello World!"
+);
+
+// 正しい例
+const heading = React.createElement(
+    "h1",
+    {
+        className: "heading-class",     // className で指定する
+        htmlFor: "me",                  // htmlFor で指定する
+        style: {                        // CSSプロパティをkey, 設定値をvalue に持つオブジェクトとして指定する
+            background: "black"
+        }
+    },
+    "Hello World!"
+);
+
+```
+
+
+### React.DOM.*
+
+React.createElement では第1引数で要素のタイプを指定しましたが、この記述を省きメソッド名で明示的に指定することができます  
+`React.DOM` の配下にはHTMLの各要素がReactのコンポーネントとして用意されています  
+
+``` js
+// 同じ意味
+const elm1 = React.createElement("h1", {id: "heading-one"}, "Hello World!");
+const elm2 = React.DOM.h1({id: "heading-one"}, "Hello World!");
+```
+
+
 <br>
 
 ## 01-2. 要素のネスト
@@ -174,6 +219,8 @@ ReactDOM.render(
 UIはボタンやリスト、見出しといった複数の部品によって構成されています  
 同じ構成のUI部品を使いまわしたいとき、Reactコンポーネントが利用できます  
 
+React におけるコンポーネントとは、マークアップを返す JavaScript 関数です  
+
 例えば表示するデータの内容が異なっていたとしても、同じ構造をもつデータはひとつのコンポーネントを利用して描画できます  
 ReactでUIを構築する際には、まず表示する要素を `再利用可能な部品に分割` しコンポーネント化することを考慮しましょう  
 
@@ -217,7 +264,9 @@ ReactDOM.render(
 
 ```
 
-より簡潔な書き方（デストラクチャリングを利用）もできます
+分割代入 (Destructuring) を利用し、`props` を省きより簡潔に書くこともできます  
+参考：https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+
 ``` js
 function countryList({ countrys }) {
   return React.createElement(
@@ -229,3 +278,4 @@ function countryList({ countrys }) {
   );
 };
 ```
+
