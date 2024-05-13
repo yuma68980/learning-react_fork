@@ -4,6 +4,7 @@
 ## 02-1. JSX (JavaScript XML)
 
 「JS」は `JavaScript`、 「X」は `XML` を意味します  
+※JavaScript Syntax eXtension とも呼ばれます
 JSXはJavaScriptの構文の中に直接XMLのようなタグベースの構文を記述するための言語拡張です  
 開発元はReactと同じくMeta社になります  
 
@@ -160,9 +161,9 @@ npm install && npm run start
 
 ## 02-5. コンポーネントにプロパティを渡す
 
-コンポーネントが値を受け取る処理を追加しましょう  
+コンポーネントが呼び出し側から値を受け取る処理を追加してみましょう  
 
-まず、受け取る側のコンポーネントに引数を追加します
+まず、値を受け取る側のコンポーネントに引数を追加します
 ```jsx
 function MyButton(props) {
   return (
@@ -173,7 +174,8 @@ function MyButton(props) {
 }
 ```
 
-次に値を渡す側（コンポーネント呼び出し側）から値を渡します
+次に値を渡す側（コンポーネント呼び出し側）から値を渡します  
+レンダリングされると `MyButton` コンポーネントの表示内容がここで渡した値となることが確認できます  
 
 ```jsx
 export default function MyApp() {
@@ -182,6 +184,25 @@ export default function MyApp() {
       <h1>Welcome to my app</h1>
       <MyButton name="Bob" />
     </div>
+  );
+}
+```
+
+さらに、渡した値（props）をコンポーネント内の関数で参照してみましょう  
+
+```jsx
+function MyButton(props) {
+
+  // 関数を追加
+  function handleOnClick() {
+        alert("Welcome! " + props.name);
+  }
+
+  // ボタンクリック時のイベントハンドラに↑の関数を設定する
+  return (
+    <button onClick={handleOnClick}>
+      Hi! {props.name}
+    </button>
   );
 }
 ```
