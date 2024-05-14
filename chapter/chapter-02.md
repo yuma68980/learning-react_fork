@@ -1,4 +1,4 @@
-# chapter-01 JSX
+# chapter-02 JSX
 
 
 ## 02-1. JSX (JavaScript XML)
