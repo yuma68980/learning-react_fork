@@ -33,3 +33,39 @@
     margin-left: 20px;
   }
   
+  .question-wrap {
+    border: solid;
+    padding: 0 20px;
+    margin: 10px 0;
+  }
+
+  .question-title {
+    border-bottom: solid 1px;
+  }
+
+  .question-content {
+    padding: 10px;
+  }
+
+  .background-red {
+    background-color: red;
+  }
+
+  .background-green {
+    background-color: green;
+  }
+
+  .background-blue {
+    background-color: blue;
+  }
+
+  .badge {
+    position: relative;
+  }
+  .badge::after {
+    content: attr(data-count)"";
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+  }
