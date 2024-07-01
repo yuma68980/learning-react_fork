@@ -1,0 +1,37 @@
+form {
+  margin-top: 1em;
+}
+input[type="submit"] {
+  padding: 0.1em 0.5em;
+}
+input[type="text"] {
+  width: calc(100vw - 100px);
+  padding: 0.5em;
+  margin: 0 0.5em;
+}
+
+.flex {
+  display: flex;
+}
+.scrollable {
+  overflow: scroll;
+}
+.scrollable::-webkit-scrollbar {
+  display:none;
+ }
+
+ .movie_wrap {
+  position: relative;
+  overflow: hidden;
+  border: solid 2px black;
+  width: 70vw;
+  height: calc(100vh - 100px);
+}
+
+.comments_wrap {
+  white-space: nowrap;
+  border: solid 2px black;
+  margin-left: 1em;
+  width: 25vw;
+  height: calc(100vh - 100px);
+}
