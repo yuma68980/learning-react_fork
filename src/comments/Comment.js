@@ -2,7 +2,9 @@ import { useState, useEffect, useRef} from 'react';
 
 export default function Comment(props) {
 
-  const moveX = 5;
+  const moveX = Number(props.speed);
+  const fontColor = props.color;
+  const fontSize = parseInt(props.size) || 14;
   const elm = useRef(null);
   const [position, setPosition] = useState({
     left: 0,
@@ -34,6 +36,8 @@ export default function Comment(props) {
           position: 'absolute',
           top: position.top + 'px',
           left: position.left + 'px',
+          color: fontColor,
+          'font-size': fontSize + 'px',
         }}
       >{props.message}</span>
     </>
